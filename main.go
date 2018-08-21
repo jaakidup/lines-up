@@ -44,13 +44,9 @@ func getExternalIPAddresses() ([]string, error) {
 			case *net.IPAddr:
 				ip = a.IP
 			}
-
-			if ip == nil || ip.IsLoopback() {
-				continue
-			}
 			ip = ip.To4()
 			if ip == nil {
-				continue // not ipv4
+				continue
 			}
 			ipAddresses = append(ipAddresses, ip.String())
 		}
